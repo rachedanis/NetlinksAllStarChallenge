@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<script src="jquery-2.2.0.js"></script>
+<script type="text/javascript"
+    src="http://maps.google.com/maps/api/js?sensor=false">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"  />	
+</script>
+<script type="text/javascript">
+var map;
+var markers = [];
+
+
+// Adds a marker to the map and push to the array.
+function addMarker(location,contentString) {
+  var marker = new google.maps.Marker({
+    position: location,
+    map: map,
+	content: contentString
+	
+  });
+    var contentString = contentString;
+    var infowindow = new google.maps.InfoWindow({
+        content: contentString
+    });
+ 
+    google.maps.event.addListener(marker, 'click', function() {
+      infowindow.open(map,marker);
+    });
+ 
+  markers.push(marker);
+}
+
+// Sets the map on all markers in the array.
+function setMapOnAll(map) {
+  for (var i = 0; i < markers.length; i++) {
+    markers[i].setMap(map);
+  }
+}
+
+// Removes the markers from the map, but keeps them in the array.
+function clearMarkers() {
+  setMapOnAll(null);
+}
+
+// Shows any markers currently in the array.
+function showMarkers() {
+  setMapOnAll(map);
+}
+
+// Deletes all markers in the array by removing references to them.
+function deleteMarkers() {
+  clearMarkers();
+  markers = [];
+}
+function dem(){
+	x=-34.397 ;
+	y=150.644;
+	checckedmemebres = [];
+	
+	checkmembre = function(i){
+		if ( checckedmemebres[i] == 0)
+			checckedmemebres[i] = 1;
+		else
+			checckedmemebres[i] = 0;
+		initialize();
+	}
+	
+	var position = new google.maps.LatLng(x, y);
+		var myOptions = {
+		  zoom: 2,
+		  center: position,
+		  mapTypeId: google.maps.MapTypeId.ROADMAP
+		};
+		
+	map = new google.maps.Map(
+			document.getElementById("map_canvas"),
+			myOptions);
+	 
+	 
+	 function initialize() {
+	 
+	 variable = new XMLHttpRequest();
+	 variable.open("GET","http://172.16.15.101:3000/membres.json",false);
+	 variable.onload= function(data)
+	 {
+		console.log(variable.responseText);
+		tab = JSON.parse(variable.responseText);
+		deleteMarkers();
+		document.getElementById("listmembres").innerHTML = "";
+		for (var i=0;i<tab.length;i++){
+			if (typeof checckedmemebres[i] == 'undefined'){
+				checckedmemebres.push(1);
+			}
+			
+			membre = tab[i];
+			x= membre.lat; y=membre.lon;
+			var position = new google.maps.LatLng(x, y);
+			var contentString = "ID: "+membre.id.toString()+" - Name: "+membre.name.toString();
+			var infowindow = new google.maps.InfoWindow({
+				//content: contentString
+			});
+			
+			if (checckedmemebres[i] == 1){
+				document.getElementById("listmembres").innerHTML += "<li> <input type='checkbox' onclick='checkmembre("+i+")' name='checkbox' id='checkbox' checked/>"+membre.name+"</li>"
+				addMarker(position,contentString);
+			}else{
+				document.getElementById("listmembres").innerHTML += "<li> <input type='checkbox' onclick='checkmembre("+i+")' name='checkbox' id='checkbox' />"+membre.name+"</li>"
+			}
+			
+			
+		}
+	 }
+	 variable.send();
+	  
+		
+	 
+	  }
+	  initialize();
+	  setInterval(initialize , 1000*10);}
+ 
+ function showSidebar(){
+	if( parseInt(document.getElementById("sidebar").style.left) == -350 ){
+	document.getElementById("sidebar").style.left = 0;
+	document.getElementById("btnsidebar").style.left="300px";
+	}else{
+	document.getElementById("sidebar").style.left = "-350px";
+	document.getElementById("btnsidebar").style.left="-50px";	
+	}
+ }
+
+</script>
+<style>
+#map_canvas{
+ 	position:absolute;
+ 	border:5px solid white;
+	box-shadow: 1px 1px 12px #555;	
+	width:50%;
+ 	height: 60%;	
+ 	top: 100px;
+ 	left: 500px;
+ 	z-index: 0;
+}
+
+.sidebar{
+	position:fixed;
+	width:350px;
+	left:-350px;
+	background-color:#e5e3df;
+	height:100%;
+	top:0;
+	z-index:3;
+	transition:left .5s;
+	color:gray;
+	box-shadow: 1px 1px 12px #555;
+}
+
+.sidebar ul{
+	list-style:none;
+	font-size:1.3em;
+}
+.sidebar li{
+	margin:10px 12px;
+}
+
+.btnshowsidebar{
+	position:fixed;
+	left:-50px;
+	top:40%;
+	height:100px;
+	width:100px;
+	border-radius:50%;
+	background-color:#d4d1cb;
+	z-index:2;
+	transition:left .5s;
+	box-shadow: 1px 1px 12px #555;
+}
+
+#checkboxes ul {
+  margin: 0;
+  list-style: none;
+  float: left;
+  z-index:4;
+}
+#checkboxes label {
+  float: left;
+  font-size: 25px;  
+}
+</style>
+</head>
+<body onload="dem()" >
+<div class="container">
+  <div class="btnshowsidebar" id="btnsidebar" onclick="showSidebar()">
+  </div>
+  <div class="sidebar" id="sidebar" style="left:-350px">
+	<div id="checkboxes">
+	<label></label>
+	<ul  id="listmembres" >
+		
+	</ul>
+	</div>	
+  </div>
+  <div id="map_canvas"></div>
+  </div>
+</body>
+</html>

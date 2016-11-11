@@ -1,0 +1,35 @@
+<p id="notice"><%= notice %></p>
+
+<h1 class="page-header">Listing Membres</h1>
+
+<table class="table table-condensed table-stripped">
+  <thead>
+    <tr>
+      <th>Email</th>
+      <th>Name</th>
+      <th>Password</th>
+      <th>Lat</th>
+      <th>Lon</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @membres.each do |membre| %>
+      <tr>
+        <td><%= membre.email %></td>
+        <td><%= membre.name %></td>
+        <td><%= membre.password %></td>
+        <td><%= membre.lat %></td>
+        <td><%= membre.lon %></td>
+        <td><%= link_to 'Show', membre %></td>
+        <td><%= link_to 'Edit', edit_membre_path(membre) %></td>
+        <td><%= link_to 'Destroy', membre, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Membre', new_membre_path %>
