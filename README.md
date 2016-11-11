@@ -1,2 +1,2 @@
-# TrackingPlatform
-A web tracking platform of a mobile app.
+# Trackify
+Its a mobile application for geolocalisation using GSM network with a tracking web platform. (android, ruby on rails, javascript, html, css).
