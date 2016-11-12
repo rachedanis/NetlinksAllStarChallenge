@@ -3,7 +3,7 @@
  Mobile app for geolocalisation using GSM network.
 
 
-# Libraries license
+# Libraries used :
 
 
 ## Yalantis guillotine
