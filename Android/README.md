@@ -1,59 +1,12 @@
-# Guillotine animation
+# Trackify
 
-Neat library, that provides a simple way to implement guillotine-styled animation
-
-[![Yalantis](https://raw.githubusercontent.com/Yalantis/GuillotineMenu-Android/master/made-in-yalantis.png)](https://yalantis.com/?utm_source=github)
-
-[![Android Arsenal](https://img.shields.io/badge/Android%20Arsenal-GuillotineMenu-green.svg?style=flat)](https://android-arsenal.com/details/1/1995)
-
-[![Android Gems](http://www.android-gems.com/badge/Yalantis/GuillotineMenu-Android.svg?branch=master)](http://www.android-gems.com/lib/Yalantis/GuillotineMenu-Android)
-
-Check this [project on Dribbble] (https://dribbble.com/shots/2018249-Guillotine-Menu)
-
-Also, read how it was done in [our blog] (https://yalantis.com/blog/how-we-developed-the-guillotine-menu-animation-for-android/?utm_source=github)
-
-<img src="https://d13yacurqjgara.cloudfront.net/users/495792/screenshots/2113314/draft-03.gif" alt="Guillotine animation gif" style="width:800;height:600">
+Mobile app for geolocalisation using GSM network.
 
 
-# Usage
+## Libraries license
 
-*For a working implementation, have a look at the app module*
 
-1. Include the library as local library project.
-
-2. Your hamburger on navigation menu must have exactly same coordinates as hamburger on ActionBar.
-
-3. In your `onCreate` method you need to config and build animation with GuillotineAnimation.GuillotineBuilder
-
-	```java
-    new GuillotineAnimation.GuillotineBuilder(guillotineMenu, guillotineMenu.findViewById(R.id.guillotine_hamburger), contentHamburger)
-                .setActionBarViewForAnimation(toolbar)
-                .build();
-     ```
-Here `setActionBarViewForAnimation` method enables bounce effect of ActionBar at the end of the guillotine closing animation.
-
-# Misc
-
-Builder allows you to customize start delay, duration, interpolation and you can set listener if you want to do staff at the moment when menu has been opened or closed.
-
-# Compatibility
-  
-  * Android 4.0.3 Ice Cream Sandwich (API level 15)
-  
-# Changelog
-
-### Version: 1.0
-
-  * Initial Build
-  
-
-#### Let us know!
-
-We’d be really happy if you sent us links to your projects where you use our component. Just send an email to github@yalantis.com And do let us know if you have any questions or suggestion regarding the animation. 
-
-P.S. We’re going to publish more awesomeness wrapped in code and a tutorial on how to make UI for Android (iOS) better than better. Stay tuned!
-
-## License
+## Yalantis guillotine
 
     Copyright 2015, Yalantis
 
