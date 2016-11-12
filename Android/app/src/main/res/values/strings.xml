@@ -1,0 +1,25 @@
+<resources>
+    <string name="app_name">Trackify</string>
+    <string name="myposition">MY POSITION</string>
+    <string name="history">BOOKMARKS</string>
+    <string name="howto">HELP</string>
+    <string name="settings">LOG OUT</string>
+    <string name="activity">activity</string>
+    <string name="title_activity_maps">Map</string>
+    <string name="title_activity_login">Sign in</string>
+
+    <!-- Strings related to login -->
+    <string name="prompt_email">Email</string>
+    <string name="prompt_password">Password (optional)</string>
+    <string name="action_sign_in">Sign in</string>
+    <string name="action_sign_in_short">Sign in</string>
+    <string name="error_invalid_email">This email address is invalid</string>
+    <string name="error_invalid_password">This password is too short</string>
+    <string name="error_incorrect_password">This password is incorrect</string>
+    <string name="error_field_required">This field is required</string>
+    <string name="permission_rationale">"Contacts permissions are needed for providing email
+        completions."
+    </string>
+
+    <string name="ip">172.16.15.101</string>
+</resources>
