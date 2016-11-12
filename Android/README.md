@@ -1,9 +1,9 @@
 # Trackify
 
-Mobile app for geolocalisation using GSM network.
+ Mobile app for geolocalisation using GSM network.
 
 
-## Libraries license
+# Libraries license
 
 
 ## Yalantis guillotine
